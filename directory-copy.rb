@@ -1,7 +1,7 @@
 def input_students
   puts "Please enter the names of the students"
   puts "To finish, just hit return twice"
-  # creat an empty array
+  # create an empty array
   students = []
   # get the first name
   name = gets.chomp
@@ -21,9 +21,16 @@ def print_header
   puts "-------------"
 end
 
+# This print method is modified to only print the students 
+# whose names begin with a specific letter, in this case J
 def print(students)
+  puts "Only showing students beginning with J"
   students.each_with_index do |student, index|
-    puts "#{(index + 1)}. #{student[:name]} (#{student[:cohort]} cohort)"
+    if student[:name][0].upcase == "J"
+      puts "#{(index + 1)}. #{student[:name]} (#{student[:cohort]} cohort)" 
+    else 
+      nil
+    end
   end
 end
 
@@ -35,3 +42,6 @@ students = input_students
 print_header
 print(students)
 print_footer(students)
+
+#p students
+#p students.first[:name][0]
