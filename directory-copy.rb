@@ -24,7 +24,7 @@ end
 # This print method is refactored to use a while loop
 # rather than the .each method
 def print(students)
-  puts "Only showing students whose names are shorter than 12 characters"
+  puts "Refactored to use a while loop"
   count = 0
   while count < students.length
     puts "#{count + 1}. #{students[count][:name]} (#{students[count][:cohort]} cohort)" 
