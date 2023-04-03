@@ -21,12 +21,12 @@ def print_header
   puts "-------------"
 end
 
-# This print method is modified to only print the students 
-# whose names begin with a specific letter, in this case J
+# This print method is modified to only print the 
+# students whose names are shorter than 12 characters
 def print(students)
-  puts "Only showing students beginning with J"
+  puts "Only showing students whose names are shorter than 12 characters"
   students.each_with_index do |student, index|
-    if student[:name][0].upcase == "J"
+    if student[:name].length < 12
       puts "#{(index + 1)}. #{student[:name]} (#{student[:cohort]} cohort)" 
     else 
       nil
