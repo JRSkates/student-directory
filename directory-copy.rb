@@ -32,14 +32,18 @@ end
 # rather than the .each method
 def print(students)
   count = 0
-  while count < students.length
-    if students[count][:cohort].nil?
-      puts "#{count + 1}. #{students[count][:name]}, #{students[count][:age]} years old, Born In: #{students[count][:country]} (#{students[count][:cohort]} cohort)".center(90) 
-      puts "WARNING: This student is missing key information".center(90)
-      count += 1
-    else
-      puts "#{count + 1}. #{students[count][:name]}, #{students[count][:age]} years old, Born In: #{students[count][:country]} (#{students[count][:cohort]} cohort)".center(90) 
-      count += 1 
+  if students.length == 0
+    puts "There are no students in your list".center(90)
+  else
+    while count < students.length
+      if students[count][:cohort].nil?
+        puts "#{count + 1}. #{students[count][:name]}, #{students[count][:age]} years old, Born In: #{students[count][:country]} (#{students[count][:cohort]} cohort)".center(90) 
+        puts "WARNING: This student is missing key information".center(90)
+        count += 1
+      else
+        puts "#{count + 1}. #{students[count][:name]}, #{students[count][:age]} years old, Born In: #{students[count][:country]} (#{students[count][:cohort]} cohort)".center(90) 
+        count += 1 
+      end
     end
   end
 end
