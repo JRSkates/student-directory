@@ -6,7 +6,7 @@ def input_students
   warning_message = "WARNING: You have not entered all the recommended information for this student." 
   success_message = "Great! Adding that to the list of students"
   # get the info from the user and split it to 4 variables
-  info = gets.chomp.split(', ').map { |detail|  detail.to_sym }
+  info = gets.strip.split(', ').map { |detail|  detail.to_sym }
   info.length == 4 ? (puts success_message.center(90)) : info.empty? ? (puts "Great, you're all done adding...".center(90)) : (puts warning_message.center(90))
   name, age, country, cohort = info
   # while the name is not empty, repeat this code
@@ -14,7 +14,7 @@ def input_students
     # add the student hash to the array
     students << {name: name, age: age, country: country, cohort: cohort}
     students.length == 1 ? (puts "Now we have #{students.count} student".center(90)) : (puts "Now we have #{students.count} students".center(90))
-    info = gets.chomp.split(', ').map { |detail|  detail.to_sym }
+    info = gets.strip.split(', ').map { |detail|  detail.to_sym }
     info.length == 4 ? (puts success_message.center(90)) : info.empty? ? (puts "Great, you're all done adding...".center(90)) : (puts warning_message.center(90))
     name, age, country, cohort = info
   end
