@@ -1,5 +1,5 @@
 def input_students
-  puts "Please enter for each student: the name, age, country of birth and finally the month of the cohort they are in (in lower case), separated by a comma.".center(90)
+  puts "Please enter for each student: the name, age, country of birth and finally the month of the cohort they are in, separated by a comma.".center(90)
   puts "To finish, just hit return twice".center(90)
   # create an empty array
   students = []
@@ -7,15 +7,15 @@ def input_students
   success_message = "Great! Adding that to the list of students"
   # get the info from the user and split it to 4 variables
   info = gets.chomp.split(', ').map { |detail|  detail.to_sym }
-  info.length == 4 ? (puts success_message.center(90)) : info.empty? ? (puts "Great, you're all done adding...").center(90) : (puts warning_message.center(90))
+  info.length == 4 ? (puts success_message.center(90)) : info.empty? ? (puts "Great, you're all done adding...".center(90)) : (puts warning_message.center(90))
   name, age, country, cohort = info
   # while the name is not empty, repeat this code
   while !info.empty? do
     # add the student hash to the array
     students << {name: name, age: age, country: country, cohort: cohort}
-    puts "Now we have #{students.count} students".center(90)
+    students.length == 1 ? (puts "Now we have #{students.count} student".center(90)) : (puts "Now we have #{students.count} students".center(90))
     info = gets.chomp.split(', ').map { |detail|  detail.to_sym }
-    info.length == 4 ? (puts success_message.center(90)) : info.empty? ? (puts "Great, you're all done adding...").centre(90) : (puts warning_message.center(90))
+    info.length == 4 ? (puts success_message.center(90)) : info.empty? ? (puts "Great, you're all done adding...".center(90)) : (puts warning_message.center(90))
     name, age, country, cohort = info
   end
   # return the array 
@@ -49,7 +49,7 @@ def print_by_cohort(students)
   counter = 0
   count = 0
   puts "Enter the month of the cohort you want to see".center(90)
-  month = gets.chomp.downcase.to_sym
+  month = gets.chomp.to_sym
   students.each do |student|
     if student[:cohort] == month
       sorted_cohorts.push(student)
