@@ -1,3 +1,5 @@
+require "csv"
+
 @students = [] # an empty array accessible to all methods
 @cohort = :november
 
@@ -60,14 +62,12 @@ end
 
 def save_students(file_to_save)
   # open the file for writing
-  file = File.open(file_to_save, "w")
-  # iterate over the students
-  @students.each do |student|
-    student_data = [student[:name], student[:cohort]]
-    csv_line = student_data.join(",")
-    file.puts csv_line
+  CSV.open(file_to_save, "wb") do |csv|
+    @students.each do |student|
+      student_data = [student[:name], student[:cohort]]
+      csv << student_data
+    end
   end
-  file.close
   puts "Students saved successfully"
 end
 
@@ -78,15 +78,13 @@ def load_students(file_to_load)
     puts "File does not exist"
     return
   else
-    file = File.open(file_to_load, "r")
-    file.readlines.each do |line|
-      name, cohort = line.chomp.split(",")
+    CSV.foreach(file_to_load) do |line|
+      name, cohort = line
       populate_student_array(name, cohort)
       # @students << {name: name, cohort: cohort.to_sym}
     end
   end
-  file.close
-  puts "Student.csv loaded and ready to view!"
+  puts "#{file_to_load} loaded and ready to view!"
 end
 
 def try_load_students
