@@ -42,12 +42,14 @@ def proccess(selection)
   when "2"
     show_students
   when "3"
+    puts "Saving students..."
     save_students
   when "4"
     puts "What file would you like to load?"
     file_load = STDIN.gets.chomp
     load_students(file_load) unless file_load.nil?
   when "9"
+    "Goodbye!"
     exit
   else
     puts "I don't know what you meant, try again"
@@ -70,11 +72,16 @@ end
 def load_students(file_to_load)
   #puts "What file would you like to load?"
   #file_to_load = STDIN.gets.chomp
-  file = File.open(file_to_load, "r")
-  file.readlines.each do |line|
-    name, cohort = line.chomp.split(",")
-    populate_student_array(name, cohort)
-    # @students << {name: name, cohort: cohort.to_sym}
+  if File.exist?(file_to_load) == false
+    puts "File does not exist"
+    return
+  else
+    file = File.open(file_to_load, "r")
+    file.readlines.each do |line|
+      name, cohort = line.chomp.split(",")
+      populate_student_array(name, cohort)
+      # @students << {name: name, cohort: cohort.to_sym}
+    end
   end
   file.close
   puts "Student.csv loaded and ready to view!"
