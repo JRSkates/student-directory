@@ -120,5 +120,13 @@ def print_footer
   puts "Overall, we have #{@students.count} great students"
 end
 
+def direct_source
+  if __FILE__ == $PROGRAME_NAME
+    puts "Source Direct"
+  end
+end
+
+
 try_load_students
+direct_source
 interactive_menu
