@@ -30,7 +30,7 @@ end
 def print_menu
   puts "1. Input the students"
   puts "2. Show the students"
-  puts "3. Save the list to students.csv"
+  puts "3. Save the list to a csv file"
   puts "4. Load the list from students.csv"
   puts "9. Exit"
 end
@@ -42,8 +42,10 @@ def proccess(selection)
   when "2"
     show_students
   when "3"
-    puts "Saving students..."
-    save_students
+    puts "Enter a name for the file you are saving this list too, remember to add .csv to the end"
+    file_save = STDIN.gets.chomp
+    puts "Saving students to #{file_save}..."
+    save_students(file_save) unless file_save.nil?
   when "4"
     puts "What file would you like to load?"
     file_load = STDIN.gets.chomp
@@ -56,9 +58,9 @@ def proccess(selection)
   end
 end
 
-def save_students
+def save_students(file_to_save)
   # open the file for writing
-  file = File.open("students.csv", "w")
+  file = File.open(file_to_save, "w")
   # iterate over the students
   @students.each do |student|
     student_data = [student[:name], student[:cohort]]
