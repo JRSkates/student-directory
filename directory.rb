@@ -44,7 +44,9 @@ def proccess(selection)
   when "3"
     save_students
   when "4"
-    load_students
+    puts "What file would you like to load?"
+    file_load = STDIN.gets.chomp
+    load_students(file_load) unless file_load.nil?
   when "9"
     exit
   else
@@ -65,8 +67,10 @@ def save_students
   puts "Students saved successfully"
 end
 
-def load_students(filename = "students.csv")
-  file = File.open(filename, "r")
+def load_students(file_to_load)
+  #puts "What file would you like to load?"
+  #file_to_load = STDIN.gets.chomp
+  file = File.open(file_to_load, "r")
   file.readlines.each do |line|
     name, cohort = line.chomp.split(",")
     populate_student_array(name, cohort)
@@ -77,7 +81,7 @@ def load_students(filename = "students.csv")
 end
 
 def try_load_students
-  filename = ARGV.first # first argument from the command line
+  filename = "students.csv" # ARGV.first first argument from the command line
   return if filename.nil? # get out of the method if it isn't given
   if File.exist?(filename) # if it exists
     load_students(filename)
